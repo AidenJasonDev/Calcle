@@ -2,7 +2,7 @@ const dictionaries = {}
 const state = {
   config: {
     attempts: 6,
-    wordLength: 10,
+    wordLength: 7,
     hardMode: false,
     ultraHardMode: false,
     displayCandidates: false,
@@ -165,7 +165,7 @@ function clearLettersFilled () {
   }
 }
 
-function createWordRow (letterCount = 10) {
+function createWordRow (letterCount = 7) {
   let divWord = document.createElement('div')
   divWord.classList.add('word')
   for (let i = 0; i < letterCount; i++) {
