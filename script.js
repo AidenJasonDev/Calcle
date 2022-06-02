@@ -2,7 +2,7 @@ const dictionaries = {}
 const state = {
   config: {
     attempts: 6,
-    wordLength: 5,
+    wordLength: 10,
     hardMode: false,
     ultraHardMode: false,
     displayCandidates: false,
@@ -136,7 +136,7 @@ function addHints (wordDiv, onEndAnimation, quick = state.config.quickAnimations
 }
 
 function fillLetter (letter) {
-  letter = letter.replace(/[^a-z]+/gi, '')
+  letter = letter.replace(/[^0-9a-z]+/gi, '')
   if (letter.length !== 1) {
     return
   }
@@ -300,7 +300,7 @@ function checkHardInput (word, ultra = false) {
 }
 
 function makeAttempt (word) {
-  word = word.replace(/[^a-z]+/gi, '').toLowerCase()
+  word = word.replace(/[^0-9a-z]+/gi, '')
   const dictionary = dictionaries[state.config.wordLength]
   if (word.length !== state.config.wordLength) {
     if (!isAnimatingHints()) {
@@ -369,7 +369,7 @@ function onType (e) {
     }
   } else if (/Backspace|Delete/.test(e.key)) {
     unfillLetter()
-  } else if (/^[a-z]$/i.test(e.key)) {
+  } else if (/^[0-9a-z]$/i.test(e.key)) {
     if (isGameOver()) {
       return
     }
