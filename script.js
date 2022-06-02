@@ -165,7 +165,7 @@ function clearLettersFilled () {
   }
 }
 
-function createWordRow (letterCount = 5) {
+function createWordRow (letterCount = 10) {
   let divWord = document.createElement('div')
   divWord.classList.add('word')
   for (let i = 0; i < letterCount; i++) {
@@ -181,7 +181,7 @@ function setupKeyboard () {
   for (let child of keyboardDiv.children) {
     child.remove()
   }
-  let layout = [ 'qwertyuiop', 'asdfghjkl', '#zxcvbnm!' ]
+  let layout = [ '1234567890', '&%$@+-*/', '#x!' ]
   for (let row of layout) {
     let keyboardRow = document.createElement('div')
     keyboardRow.classList.add('keyboard-row')
@@ -193,6 +193,14 @@ function setupKeyboard () {
       } else if (letter === '!') {
         letter = 'Backspace'
         extraClass = 'larger'
+      } else if (letter === '&') {
+        letter = '∫'
+      } else if (letter === '%') {
+        letter = 'ᵈ/dₓ'
+      } else if (letter === '$') {
+        letter = 'sin()'
+      } else if (letter === '@') {
+        letter = 'cos()'
       }
       let keyboardBtn = document.createElement('button')
       keyboardBtn.classList.add('keyboard-button', 'key-' + letter.toLowerCase())
