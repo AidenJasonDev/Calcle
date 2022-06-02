@@ -193,8 +193,6 @@ function setupKeyboard () {
       } else if (letter === '!') {
         letter = 'Backspace'
         extraClass = 'larger'
-      } else if (letter === '&') {
-        letter = '∫'
       } else if (letter === '%') {
         letter = 'ᵈ/dₓ'
       } else if (letter === '$') {
