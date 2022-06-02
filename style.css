@@ -127,6 +127,14 @@ button {
     user-select: none;
 }
 
+.derivsym {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    user-select: none;
+    
+}
+
 .letter:not(:last-child) {
     margin-right: 5px;
 }
@@ -511,4 +519,3 @@ button#playagain {
     padding: 0 12px;
 }
 
-</style>
