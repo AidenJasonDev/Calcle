@@ -70,7 +70,8 @@ operandsToSymbol = {
     "pow": "^",
     "subtract": "-"
 }
-
+op1 = plusminus()
+op2 = plusminus()
 window.onload = function () {
 
     var prevMstats = getCookie("mstats");
@@ -140,9 +141,9 @@ window.onload = function () {
     shuffleArray(operands);
     document.getElementById('num1').innerHTML = "d/dx";
     document.getElementById('num2').innerHTML = operands[1] + "x&sup2";
-    document.getElementById('num3').innerHTML = plusminus();
+    document.getElementById('num3').innerHTML = op1;
     document.getElementById('num4').innerHTML = operands[2] + "x";
-    document.getElementById('num5').innerHTML = plusminus();
+    document.getElementById('num5').innerHTML = op2;
     document.getElementById('num6').innerHTML = operands[3];
 }
 function plusminus(){
@@ -158,7 +159,8 @@ function plusminus(){
 function getDer(num1, num2) {
     num1 = num1 + ""
     num2 = num2 + ""
-    deriv = derivative(num1 + 'x^2 + ' + num2 + 'x', 'x').replace(/\s/g, '');
+    deriv = math.derivative(num1 + 'x^2'+ op1 + num2 + 'x', 'x')
+    console.log(deriv)
     return deriv
 }
 function check() {
@@ -210,7 +212,7 @@ function check() {
             }
 
         } else {
-            showResult(inputStr + " is not equal to " + goal);
+            showResult(inputStr + " is not equal to " + getDer(operands[1],operands[2]));
         }
 
         document.cookie = 'mstats=' + JSON.stringify(mstats) + ';AC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax';
