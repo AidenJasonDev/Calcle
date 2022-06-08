@@ -108,7 +108,7 @@ window.onload = function () {
     document.getElementById('time').innerHTML = "Time took: " + getTimeTook();
 
 
-    while (operands.length < 4) {
+    while (operands.length < 6) {
         var r = Math.floor(rand() * 10) + 1;
         if (operands.indexOf(r) === -1) operands.push(r);
     }
@@ -138,11 +138,12 @@ window.onload = function () {
     console.log(answerStr);
 
     shuffleArray(operands);
-    document.getElementById('num1').innerHTML = operands[0];
+    document.getElementById('num1').innerHTML = "d/dx";
     document.getElementById('num2').innerHTML = operands[1];
     document.getElementById('num3').innerHTML = operands[2];
     document.getElementById('num4').innerHTML = operands[3]
-    document.getElementById('goal').innerHTML = goal;
+    document.getElementById('num5').innerHTML = operands[4]
+    document.getElementById('num6').innerHTML = operands[5];
 }
 
 function check() {
@@ -277,18 +278,18 @@ function toggleModal(name) {
     }
 }
 
-
+/*
 function share() {
     const shareData = {
-        title: 'MATHLE',
-        text: `Time to play MATHLE, nerd. ` +
+        title: 'CALCLE',
+        text: `Time to play CALCLE, nerd. ` +
             ` I used ` + operands[0] + `, ` + operands[1] + `, ` + operands[2] + `, and ` + operands[3] + ` to make ` + goal +
             ` Took me ` + getTimeTook(),
         url: 'https://briansayre.com/mathle/'
     }
     navigator.share(shareData)
 }
-
+*/
 function daily() {
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.set('daily', 'true');
