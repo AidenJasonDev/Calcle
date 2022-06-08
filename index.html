@@ -46,7 +46,7 @@
 
         <input id="math-input" type="text" placeholder="type answer here"> </input> <br>
         <button onclick="check()">CHECK</button> <br>
-        <a onclick="toggleModal('stats')">STATS</a> | <a onclick="toggleModal('info')">INFO</a> <br><br>
+        <a onclick="toggleModal('stats')">STATS</a> | <a onclick="toggleModal('info')">INFO</a> | <a id="share" onclick="share()">SHARE</a> <br><br>
         <a id="daily" onclick="daily()">DAILY</a> | <a id="refresh" onclick="refresh()">REFRESH</a>  | <a id="answer" onclick="toggleModal('answer')">SHOW ANSWER</a>
 
         <div class="modal-full" id="result-modal">
@@ -73,13 +73,18 @@
             <div class="modal-content">
 
                 <h2>How to play:</h2>
-                * Find the derivative for the equation in the boxes by typing in your answer in the text box.<br><br>
+                * Enter a math equation using the 4 numbers on the left to equal the teal number on the right.<br><br>
+                * Have to use all 4 numbers and can only use each number once.<br><br>
                 * Have fun, nerd.<br><br>
 
                 <h2>Valid operators:</h2>
-                * Each input must have a space in between them<br><br>
-                * If a number has a constant, use an asterick (*) to multiply it to the variable (x) <br><br>
-                * Ex: if the answer is 10x+5, you would type 10 * x + 5, otherwise it will be marked as incorrect <br><br>
+                * Add: x + y<br><br>
+                * Divide: x / y<br><br>
+                * Modulo: x % y<br><br>
+                * Multiply: x * y<br><br>
+                * Power: x ^ y<br><br>
+                * Subtract: x - y<br><br>
+                * Parenthesis for order of operations<br><br>
 
                 <button onclick="toggleModal('info')">CLOSE</button>
 

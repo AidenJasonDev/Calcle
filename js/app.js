@@ -133,7 +133,7 @@ window.onload = function () {
     }
 
     let answerStr = "(" +  operands[3] + operandsToSymbol[operations[op3index].name] + "(" + operands[2]  + operandsToSymbol[operations[op2index].name] +  "(" + operands[0] + operandsToSymbol[operations[op1index].name] + operands[1] + ")))"
-    document.getElementById("answers").innerHTML = getDer(operands[1], operands[2]);
+    document.getElementById("answers").innerHTML = answerStr;
     
     console.log(takes);
     console.log(answerStr);
@@ -212,7 +212,7 @@ function check() {
             }
 
         } else {
-            showResult("Incorrect");
+            showResult(inputStr + " is not equal to " + getDer(operands[1],operands[2]));
         }
 
         document.cookie = 'mstats=' + JSON.stringify(mstats) + ';AC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax';
