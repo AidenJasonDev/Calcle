@@ -160,7 +160,7 @@ function getDer(num1, num2) {
     num1 = num1 + ""
     num2 = num2 + ""
     deriv = math.derivative(num1 + 'x^2'+ op1 + num2 + 'x', 'x')
-    console.log(deriv)
+    console.log(typeof deriv)
     return deriv
 }
 function check() {
@@ -335,4 +335,23 @@ function getTimeTook() {
         return (mtimer.timeFinished - mtimer.timeStarted).toString() + " seconds";
     }
     return "Not finished";
+}
+
+
+function PAR4N0IA() {
+    window.open (
+        "https://www.github.com/par4n0ia/", "_blank"
+    )
+}
+
+function maallaard() {
+    window.open (
+        "https://www.github.com/maallaard/", "_blank"
+    )
+}
+
+function thatguybac0n() { 
+    window.open (
+        "https://www.github.com/thatguybac0n/", "_blank"
+    )
 }
