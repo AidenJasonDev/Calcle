@@ -108,7 +108,7 @@ window.onload = function () {
     document.getElementById('time').innerHTML = "Time took: " + getTimeTook();
 
 
-    while (operands.length < 6) {
+    while (operands.length < 4) {
         var r = Math.floor(rand() * 10) + 1;
         if (operands.indexOf(r) === -1) operands.push(r);
     }
@@ -139,13 +139,28 @@ window.onload = function () {
 
     shuffleArray(operands);
     document.getElementById('num1').innerHTML = "d/dx";
-    document.getElementById('num2').innerHTML = operands[1];
-    document.getElementById('num3').innerHTML = operands[2];
-    document.getElementById('num4').innerHTML = operands[3]
-    document.getElementById('num5').innerHTML = operands[4]
-    document.getElementById('num6').innerHTML = operands[5];
+    document.getElementById('num2').innerHTML = operands[1] + "x&sup2";
+    document.getElementById('num3').innerHTML = plusminus();
+    document.getElementById('num4').innerHTML = operands[2] + "x";
+    document.getElementById('num5').innerHTML = plusminus();
+    document.getElementById('num6').innerHTML = operands[3];
+}
+function plusminus(){
+    n = Math.floor(Math.random() * (1 - 0 + 1) + 0)
+    if(n == '1') {
+        return "+";
+    }
+    else {
+        return "-";
+    }
 }
 
+function getDer(num1, num2) {
+    num1 = num1 + ""
+    num2 = num2 + ""
+    deriv = derivative(num1 + 'x^2 + ' + num2 + 'x', 'x').replace(/\s/g, '');
+    return deriv
+}
 function check() {
     try {
         var inputStr = document.getElementById("math-input").value.trim();
@@ -157,38 +172,18 @@ function check() {
             return false;
         }
 
-        var numbersInAnswerStr = inputStr.match(/[0-9 , \.]+/g);
-        var numbersInAnswer = [];
-
-        console.log(inputStr)
-        if (!numbersInAnswerStr) {
+        console.log(inputStr);
+        console.log(getDer(operands[1], operands[2]));
+        if (!inputStr) {
             showResult("No input");
             return;
         }
         
-        numbersInAnswerStr = (numbersInAnswerStr.filter(Number))
+        
 
-        // check length
-        if (numbersInAnswerStr == null || numbersInAnswerStr.length != 4) {
-            showResult("Must use only the 4 numbers");
-            return;
-        }
+       // var inputVal = math.evaluate(inputStr);
 
-        for (var i = 0; i < 4; i++) {
-            numbersInAnswer.push(parseInt(numbersInAnswerStr[i]));
-        }
-
-
-        // validate all numbers are there
-
-        if (!(numbersInAnswer.sort().join(',') === operands.sort().join(','))) {
-            showResult("Used invalid numbers");
-            return;
-        }
-
-        var inputVal = math.evaluate(inputStr);
-
-        if (parseInt(inputVal) == parseInt(document.getElementById('goal').innerHTML)) {
+        if (inputStr == getDer(operands[1], operands[2])) {
 
             showResult("Correct!");
 
@@ -215,7 +210,7 @@ function check() {
             }
 
         } else {
-            showResult(inputVal + " is not equal to " + goal);
+            showResult(inputStr + " is not equal to " + goal);
         }
 
         document.cookie = 'mstats=' + JSON.stringify(mstats) + ';AC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax';
