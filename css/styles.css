@@ -1,5 +1,4 @@
-html,
-body {
+html, body {
   font-family: "Roboto Mono", monospace;
   background-color: #17181b;
   color: white;
@@ -66,8 +65,11 @@ h1 {
   background-color: white;
 }
 
-input,
-select {
+.stats > * {
+  font-size: 1.0rem;
+}
+
+input, select {
   font-size: 100%;
 }
 
@@ -98,7 +100,7 @@ button:hover {
   cursor: pointer;
 }
 
-a {
+a, b {
   font-size: 0.8rem;
 }
 
