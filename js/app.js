@@ -1,15 +1,15 @@
 var mstats = {
-    "streak": 0,
-    "wins": 0,
-    "games": 0,
-    "lastPlayed": "1/1/2000",
-    "lastWon": "1/1/2000",
+    streak: 0,
+    wins: 0,
+    games: 0,
+    lastPlayed: "1/1/2000",
+    lastWon: "1/1/2000",
 };
 var mtimer = {
-    "timeStarted": getSecondsIntoDay(),
-    "timeFinished": -1
+    timeStarted: getSecondsIntoDay(),
+    timeFinished: -1,
 };
-var theBigDay = new Date('December 8, 1999');
+var theBigDay = new Date("December 8, 1999");
 var today = new Date();
 today.setHours(0);
 today.setMinutes(0);
@@ -18,11 +18,11 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
 });
 let value = params.daily;
-var daysSinceBday = Math.floor(((today - theBigDay) / 8.64e7));
+var daysSinceBday = Math.floor((today - theBigDay) / 8.64e7);
 if (value == "true") {
     var seed = xmur3(daysSinceBday.toString());
 } else {
-    var seed = xmur3(((new Date()).getTime()).toString());
+    var seed = xmur3(new Date().getTime().toString());
 }
 var rand = mulberry32(seed());
 var goal = -1;
@@ -59,55 +59,63 @@ var operations = [
     math.pow,
     math.pow,
     math.pow,
-    math.subtract
-]
+    math.subtract,
+];
 
 operandsToSymbol = {
-    "add": "+",
-    "divide": "/",
-    "mod": "%",
-    "multiply": "*",
-    "pow": "^",
-    "subtract": "-"
-}
-op1 = plusminus()
-op2 = plusminus()
+    add: "+",
+    divide: "/",
+    mod: "%",
+    multiply: "*",
+    pow: "^",
+    subtract: "-",
+};
+op1 = plusminus();
+op2 = plusminus();
 window.onload = function () {
-
     var prevMstats = getCookie("mstats");
     var prevMtimer = getCookie("mtimer");
-    var today = (new Date()).toLocaleDateString("en-US");
+    var today = new Date().toLocaleDateString("en-US");
 
     if (prevMstats === "") {
-        var e = '01/01/2025';
-        document.cookie = 'mstats=' + JSON.stringify(mstats) + ';AC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax';
+        var e = "01/01/2025";
+        document.cookie =
+            "mstats=" +
+            JSON.stringify(mstats) +
+            ";AC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax";
     } else {
         mstats = JSON.parse(prevMstats);
         if (mstats.lastPlayed !== today) {
             mstats.games++;
             mstats.lastPlayed = today;
         }
-        document.cookie = 'mstats=' + JSON.stringify(mstats) + ';AC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax';
+        document.cookie =
+            "mstats=" +
+            JSON.stringify(mstats) +
+            ";AC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax";
     }
 
     if (prevMtimer === "") {
-        var e = '01/01/2025';
-        document.cookie = 'mtimer=' + JSON.stringify(mtimer) + ';AC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax';
+        var e = "01/01/2025";
+        document.cookie =
+            "mtimer=" +
+            JSON.stringify(mtimer) +
+            ";AC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax";
     } else {
         mtimer = JSON.parse(prevMtimer);
 
         if (mstats.lastWon != today) {
-            mtimer.timeFinished = -1
+            mtimer.timeFinished = -1;
         }
-
     }
 
-    document.getElementById('games').innerHTML = "Games played: " + mstats.games;
-    document.getElementById('wins').innerHTML = "Wins: " + mstats.wins;
-    document.getElementById('win-perc').innerHTML = "Win Percentage: " + mstats.wins / mstats.games * 100 + "%";
-    document.getElementById('streak').innerHTML = "Streak: " + mstats.streak;
-    document.getElementById('time').innerHTML = "Time took: " + getTimeTook();
-
+    document.getElementById("games").innerHTML =
+        "Games played: " + mstats.games;
+    document.getElementById("wins").innerHTML = "Wins: " + mstats.wins;
+    document.getElementById("win-perc").innerHTML =
+        "Win Percentage: " + (mstats.wins / mstats.games) * 100 + "%";
+    document.getElementById("streak").innerHTML = "Streak: " + mstats.streak;
+    document.getElementById("time").innerHTML = "Time took: " + getTimeTook();
 
     while (operands.length < 4) {
         var r = Math.floor(rand() * 10) + 1;
@@ -116,7 +124,13 @@ window.onload = function () {
 
     var takes = 0;
 
-    while (!math.isPositive(goal) || !math.isInteger(goal) || goal < 1 || goal > 100 || operands.indexOf(goal) != -1) {
+    while (
+        !math.isPositive(goal) ||
+        !math.isInteger(goal) ||
+        goal < 1 ||
+        goal > 100 ||
+        operands.indexOf(goal) != -1
+    ) {
         try {
             takes++;
             // choose 3 operations
@@ -132,44 +146,60 @@ window.onload = function () {
         }
     }
 
-    let answerStr = "(" +  operands[3] + operandsToSymbol[operations[op3index].name] + "(" + operands[2]  + operandsToSymbol[operations[op2index].name] +  "(" + operands[0] + operandsToSymbol[operations[op1index].name] + operands[1] + ")))"
+    let answerStr =
+        "(" +
+        operands[3] +
+        operandsToSymbol[operations[op3index].name] +
+        "(" +
+        operands[2] +
+        operandsToSymbol[operations[op2index].name] +
+        "(" +
+        operands[0] +
+        operandsToSymbol[operations[op1index].name] +
+        operands[1] +
+        ")))";
     document.getElementById("answers").innerHTML = answerStr;
-    
+
     console.log(takes);
     console.log(answerStr);
 
     shuffleArray(operands);
-    document.getElementById('num1').innerHTML = "d/dx";
-    document.getElementById('num2').innerHTML = operands[1] + "x&sup2";
-    document.getElementById('num3').innerHTML = op1;
-    document.getElementById('num4').innerHTML = operands[2] + "x";
-    document.getElementById('num5').innerHTML = op2;
-    document.getElementById('num6').innerHTML = operands[3];
-}
-function plusminus(){
-    n = Math.floor(Math.random() * (1 - 0 + 1) + 0)
-    if(n == '1') {
+    document.getElementById("num1").innerHTML = "d/dx";
+    document.getElementById("num2").innerHTML = operands[1] + "x&sup2";
+    document.getElementById("num3").innerHTML = op1;
+    document.getElementById("num4").innerHTML = operands[2] + "x";
+    document.getElementById("num5").innerHTML = op2;
+    document.getElementById("num6").innerHTML = operands[3];
+};
+function plusminus() {
+    n = Math.floor(Math.random() * (1 - 0 + 1) + 0);
+    if (n == "1") {
         return "+";
-    }
-    else {
+    } else {
         return "-";
     }
 }
 
 function getDer(num1, num2) {
-    num1 = num1 + ""
-    num2 = num2 + ""
-    deriv = math.derivative(num1 + 'x^2'+ op1 + num2 + 'x', 'x')
-    console.log(typeof deriv)
-    return deriv
+    num1 = num1 + "";
+    num2 = num2 + "";
+    deriv = math.derivative(num1 + "x^2" + op1 + num2 + "x", "x");
+    console.log(typeof deriv);
+    return deriv;
 }
 function check() {
     try {
         var inputStr = document.getElementById("math-input").value.trim();
 
         if (inputStr === "clear") {
-            document.cookie = 'mstats=' + JSON.stringify(mstats) + ';AC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax';
-            document.cookie = 'mtimer=' + JSON.stringify(mtimer) + ';AC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax';
+            document.cookie =
+                "mstats=" +
+                JSON.stringify(mstats) +
+                ";AC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax";
+            document.cookie =
+                "mtimer=" +
+                JSON.stringify(mtimer) +
+                ";AC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax";
             location.reload();
             return false;
         }
@@ -180,16 +210,13 @@ function check() {
             showResult("No input");
             return;
         }
-        
-        
 
-       // var inputVal = math.evaluate(inputStr);
+        // var inputVal = math.evaluate(inputStr);
 
         if (inputStr == getDer(operands[1], operands[2])) {
-
             showResult("Correct!");
 
-            var todayDate = new Date()
+            var todayDate = new Date();
             var today = todayDate.toLocaleDateString("en-US");
             var yesterdayDate = new Date();
             yesterdayDate.setDate(todayDate.getDate() - 1);
@@ -203,40 +230,51 @@ function check() {
 
             if (mtimer.timeFinished == -1) {
                 mtimer.timeFinished = getSecondsIntoDay();
-                document.cookie = 'mtimer=' + JSON.stringify(mtimer) + ';AC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax';
+                document.cookie =
+                    "mtimer=" +
+                    JSON.stringify(mtimer) +
+                    ";AC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax";
             }
 
             if (today !== mstats.lastWon) {
                 mstats.lastWon = today;
                 mstats.wins++;
             }
-
         } else {
-            showResult(inputStr + " is not equal to " + getDer(operands[1],operands[2]));
+            showResult(
+                inputStr +
+                    " is not equal to " +
+                    getDer(operands[1], operands[2])
+            );
         }
 
-        document.cookie = 'mstats=' + JSON.stringify(mstats) + ';AC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax';
-        document.getElementById('games').innerHTML = "Games played: " + mstats.games;
-        document.getElementById('wins').innerHTML = "Wins: " + mstats.wins;
-        document.getElementById('win-perc').innerHTML = "Win Percentage: " + mstats.wins / mstats.games * 100 + "%";
-        document.getElementById('streak').innerHTML = "Streak: " + mstats.streak;
-        document.getElementById('time').innerHTML = "Time took: " + getTimeTook();
+        document.cookie =
+            "mstats=" +
+            JSON.stringify(mstats) +
+            ";AC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax";
+        document.getElementById("games").innerHTML =
+            "Games played: " + mstats.games;
+        document.getElementById("wins").innerHTML = "Wins: " + mstats.wins;
+        document.getElementById("win-perc").innerHTML =
+            "Win Percentage: " + (mstats.wins / mstats.games) * 100 + "%";
+        document.getElementById("streak").innerHTML =
+            "Streak: " + mstats.streak;
+        document.getElementById("time").innerHTML =
+            "Time took: " + getTimeTook();
     } catch (e) {
         showResult("Error: " + e.toString());
-
     }
 }
 
-
-// HELPERS 
+// HELPERS
 
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
+    let ca = decodedCookie.split(";");
     for (let i = 0; i < ca.length; i++) {
         let c = ca[i];
-        while (c.charAt(0) == ' ') {
+        while (c.charAt(0) == " ") {
             c = c.substring(1);
         }
         if (c.indexOf(name) == 0) {
@@ -261,9 +299,11 @@ function timeStart() {
         millisecound += 1000;
         let dateTimer = new Date(millisecound);
         watch.innerHTML =
-            ('0' + dateTimer.getUTCHours()).slice(-2) + ':' +
-            ('0' + dateTimer.getUTCMinutes()).slice(-2) + ':' +
-            ('0' + dateTimer.getUTCSeconds()).slice(-2)
+            ("0" + dateTimer.getUTCHours()).slice(-2) +
+            ":" +
+            ("0" + dateTimer.getUTCMinutes()).slice(-2) +
+            ":" +
+            ("0" + dateTimer.getUTCSeconds()).slice(-2);
     }, 1000);
 }
 
@@ -289,15 +329,14 @@ function share() {
 */
 function daily() {
     const urlParams = new URLSearchParams(window.location.search);
-    urlParams.set('daily', 'true');
+    urlParams.set("daily", "true");
     window.location.search = urlParams;
 }
 
 function refresh() {
     const urlParams = new URLSearchParams(window.location.search);
-    urlParams.set('daily', 'false');
+    urlParams.set("daily", "false");
     window.location.search = urlParams;
-    
 }
 
 function showResult(message) {
@@ -308,50 +347,46 @@ function showResult(message) {
 function xmur3(str) {
     for (var i = 0, h = 1779033703 ^ str.length; i < str.length; i++) {
         h = Math.imul(h ^ str.charCodeAt(i), 3432918353);
-        h = h << 13 | h >>> 19;
-    } return function () {
+        h = (h << 13) | (h >>> 19);
+    }
+    return function () {
         h = Math.imul(h ^ (h >>> 16), 2246822507);
         h = Math.imul(h ^ (h >>> 13), 3266489909);
         return (h ^= h >>> 16) >>> 0;
-    }
+    };
 }
 
 function mulberry32(a) {
     return function () {
-        var t = a += 0x6D2B79F5;
-        t = Math.imul(t ^ t >>> 15, t | 1);
-        t ^= t + Math.imul(t ^ t >>> 7, t | 61);
-        return ((t ^ t >>> 14) >>> 0) / 4294967296;
-    }
+        var t = (a += 0x6d2b79f5);
+        t = Math.imul(t ^ (t >>> 15), t | 1);
+        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
 }
 
 function getSecondsIntoDay() {
     var d = new Date();
-    return ((d.getHours() * 3600) + (d.getMinutes() * 60) + d.getSeconds())
+    return d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
 }
 
 function getTimeTook() {
     if (mtimer.timeFinished - mtimer.timeStarted > 0) {
-        return (mtimer.timeFinished - mtimer.timeStarted).toString() + " seconds";
+        return (
+            (mtimer.timeFinished - mtimer.timeStarted).toString() + " seconds"
+        );
     }
     return "Not finished";
 }
 
-
 function PAR4N0IA() {
-    window.open (
-        "https://www.github.com/par4n0ia/", "_blank"
-    )
+    window.open("https://www.github.com/par4n0ia/", "_blank");
 }
 
 function maallaard() {
-    window.open (
-        "https://www.github.com/maallaard/", "_blank"
-    )
+    window.open("https://www.github.com/maallaard/", "_blank");
 }
 
-function thatguybac0n() { 
-    window.open (
-        "https://www.github.com/thatguybac0n/", "_blank"
-    )
+function thatguybac0n() {
+    window.open("https://www.github.com/thatguybac0n/", "_blank");
 }

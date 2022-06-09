@@ -26,24 +26,31 @@ h1 {
   border-radius: 5px;
   font-size: 2.5rem;
 }
+
 #num1 {
   background-color: #17181b;
 }
+
 #num2 {
   background-color: #2e3134;
 }
+
 #num3 {
   background-color: #2e3134;
 }
+
 #num4 {
   background-color: #2e3134;
 }
+
 #num5 {
   background-color: #2e3134;
 }
+
 #num6 {
   background-color: #2e3134;
 }
+
 #goal {
   color: #61beca;
 }

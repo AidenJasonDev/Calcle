@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html>
- 
+
 <head>
     <title> CALCLE </title>
     <meta charset="UTF-8">
@@ -26,34 +26,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
 </head>
- 
+
 <body>
     <center>
- 
+
         <h1>CALCLE</h1>
- 
+
         <div id="numbers">
-          <div class="con">
-            <div class="number" id="num1"></div>
-            <div class="number" id="num2"></div>
-            <div class="number" id="num3"></div>
-            <div class="number" id="num4"></div>
-            <div class="number" id="num5"></div>
-            <div class="number" id="num6"></div>
-          </div>
-           
+            <div class="con">
+                <div class="number" id="num1"></div>
+                <div class="number" id="num2"></div>
+                <div class="number" id="num3"></div>
+                <div class="number" id="num4"></div>
+                <div class="number" id="num5"></div>
+                <div class="number" id="num6"></div>
+            </div>
         </div>
- 
-        <input id="math-input" type="text" placeholder="type answer here"> </input> <br>
+
+        <input id="math-input" type="text" placeholder="type answer here"> <br>
         <button onclick="check()">CHECK</button> <br>
-        <a onclick="toggleModal('stats')">STATS</a> | <a onclick="toggleModal('info')">INFO</a> | <a id="refresh" onclick="refresh()">REFRESH</a> <br><br>
+        <a onclick="toggleModal('stats')">STATS</a> |
+        <a onclick="toggleModal('info')">INFO</a> |
+        <a id="refresh" onclick="refresh()">REFRESH</a>
+        <br><br>
         <a>The Creators</a> <br><br>
-        <a onclick="PAR4N0IA()">PAR4N0IA</a> | <a onclick="maallaard()">maallaard</a> | <a onclick="thatguybac0n()">thatguybac0n</a> <br><br>
-        <a>Repo: </a>
-        <a onclick="window.open('https://github.com/PAR4N0IA/Calcle', '_blank')">Calcle</a> 
-        
-        
- 
+        <a onclick="PAR4N0IA()">PAR4N0IA</a> |
+        <a onclick="maallaard()">maallaard</a> |
+        <a onclick="thatguybac0n()">thatguybac0n</a>
+        <br><br>
+        <a>Repo:</a>
+        <a onclick="window.open('https:\/\/github.com/PAR4N0IA/Calcle', '_blank')">Calcle</a>
+
         <div class="modal-full" id="result-modal">
             <div class="modal-content">
                 <h2 id=result-text></h2>
@@ -61,7 +64,7 @@
                 <button onclick="toggleModal('result')">CLOSE</button>
             </div>
         </div>
- 
+
         <div class="modal-full" id="stats-modal">
             <div class="modal-content">
                 <h2>Stats:</h2>
@@ -73,36 +76,36 @@
                 <button onclick="toggleModal('stats')">CLOSE</button>
             </div>
         </div>
- 
+
         <div class="modal-full" id="info-modal">
             <div class="modal-content">
- 
+
                 <h2>How to play:</h2>
                 * Find the derivative for the equation in the boxes by typing in your answer in the text box.<br><br>
                 * Have fun, nerd.<br><br>
- 
+
                 <h2>Valid operators:</h2>
                 * Each input must have a space in between them<br><br>
                 * If a number has a constant, use an asterick (*) to multiply it to the variable (x) <br><br>
-                * Ex: if the answer is 10x+5, you would type 10 * x + 5, otherwise it will be marked as incorrect <br><br>
- 
+                * Ex: if the answer is 10x+5, you would type 10 * x + 5, otherwise it will be marked as incorrect
+                <br><br>
+
                 <button onclick="toggleModal('info')">CLOSE</button>
- 
+
             </div>
         </div>
- 
+
         <div class="modal-full" id="answer-modal">
             <div class="modal-content">
- 
+
                 <h2 id="answers"></h2>
- 
+
                 <button onclick="toggleModal('answer')">CLOSE</button>
- 
+
             </div>
         </div>
- 
+
     </center>
 </body>
- 
-</html>
 
+</html>
